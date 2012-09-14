@@ -11,7 +11,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * @author shamikm
+ * A simple web-server
+ * 
+ * @author Shamik Maity
+ * <b>Email: shamik.maity@gmail.com
  */
 
 
