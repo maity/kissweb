@@ -1,4 +1,4 @@
-package com.shamik.webserver;
+package com.kissweb.webserver;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -90,7 +90,7 @@ public class WebServer {
 				parseRequestLine(request_line);
 			}
 
-			File f = new File(http_root_dir + request.request);
+			File file_with_httpRootDir = new File(http_root_dir + request.request);
 
 			String mime_type = "text/plain";
 			if (request.request.endsWith(".html")) {
@@ -101,12 +101,12 @@ public class WebServer {
 				mime_type = "text/javascript";
 			}
 
-			if (f.exists()) {
+			if (file_with_httpRootDir.exists()) {
 				if (request.request_type == "GET") {
 					out.write("HTTP/1.0 200 OK\n");
 					out.write("Content-type: " + mime_type + "\n\n");
 					file = new BufferedReader(new InputStreamReader(
-							new FileInputStream(f)));
+							new FileInputStream(file_with_httpRootDir)));
 					request_line = null;
 					while (!file.ready())
 						;
@@ -145,6 +145,11 @@ public class WebServer {
 
 	}
 
+	/**
+	 * Creates the server socket and starts the server.
+	 *  
+	 * @throws IOException
+	 */
 	public void start() throws IOException {
 		System.out.println("WebServer started ...");
 		System.out.println("http://localhost:" + port + "/");
@@ -168,6 +173,11 @@ public class WebServer {
 		main_thread.start();
 	}
 
+	/**
+	 * Stops the web-server thread
+	 * 
+	 * @throws IOException
+	 */
 	public void stop() throws IOException {
 		isRunning = false;
 		if (!server_socket.isClosed()) {
