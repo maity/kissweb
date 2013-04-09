@@ -14,7 +14,7 @@ import java.net.Socket;
  * A simple web-server
  * 
  * @author Shamik Maity
- * <b>Email: shamik.maity@gmail.com
+ * <b>Email: shamik.maity@gmail.com</b>
  */
 
 
